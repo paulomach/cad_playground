@@ -44,10 +44,13 @@ module cage() {
     translate([50,0,0]) platform();
 }
 
-rotate([90,90,0])
-linear_extrude(30)
-polygon([[20,0],[0,0],[0,50],[20,50]]);
+//rotate([90,90,0])
+
+
+use <servo.scad>;
 
 cage();
 
+translate([-25,20,30]) 
+rotate([0,0,180]) servo();
 

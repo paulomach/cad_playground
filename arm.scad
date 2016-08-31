@@ -1,39 +1,39 @@
 $fn=50;
-module oneside(arm) {
+module oneside(arm,profile) {
     union() {
         {
             difference() {
                 linear_extrude(height = arm) {
                     difference() {
-                        square(size=[10,8]);
-                        translate([1,0,0])
-                        square(size=[8,6]);
+                        square(size=[profile,profile]);
+                        translate([1,-1,0])
+                        square(size=[profile-2,profile]);
                     }
                 }
-                translate([0,0,-5*sqrt(2)])
-                rotate([45,0,0])
-                cube(10);
-                translate([0,3,8])
+                translate([0,-profile*0.75,-profile*sqrt(2)])
+                rotate([30,0,0])
+                cube(profile*2);
+                translate([0,profile/2,profile])
                 rotate([0,90,0])
-                cylinder(10,1.5,1.5,false);
-                translate([0,0,arm-5*sqrt(2)])
+                cylinder(profile,2.5,2.5,false);
+                translate([0,0,arm-profile/sqrt(2)])
                 rotate([45,0,0])
-                cube(10);
+                cube(profile);
             }
         }
 
-        translate([-10,0,arm-5*sqrt(2)])
+        translate([-profile/2,0,arm-profile/sqrt(2)])
         rotate([45,0,0])
         difference() {
-            cube([30,10,10]);
-            translate([0,0,1])
-            cube([30,9,9]);
+            cube([2*profile,profile,profile]);
+            translate([0,-1,1])
+            cube([2*profile,profile,profile]);
         }
     }
 }
 
 color("SteelBlue")
-    oneside(70);
+oneside(150,30);
 //rotate([7,0,0])
 //translate([1.2,6,0])
 //mirror([0,1,0])
